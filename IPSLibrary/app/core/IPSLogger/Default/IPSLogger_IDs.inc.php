@@ -54,6 +54,11 @@
   define ("c_ID_ProwlOutLevel",    59229 /*[Program\IPSLibrary\app\core\IPSLogger\IPSLogger\ProwlOut_Level]*/);
   define ("c_ID_ProwlOutPriority", 10901 /*[Program\IPSLibrary\app\core\IPSLogger\IPSLogger\ProwlOut_Priority]*/);
 
+  // ---- NMA Out ---------------------------------------------------------------------------
+  define ("c_ID_NMAOutEnabled",  11357 /*[Program\IPSLibrary\app\core\IPSLogger\IPSLogger\NMAOut_Enabled]*/);
+  define ("c_ID_NMAOutLevel",    52269 /*[Program\IPSLibrary\app\core\IPSLogger\IPSLogger\NMAOut_Level]*/);
+  define ("c_ID_NMAOutPriority", 19521 /*[Program\IPSLibrary\app\core\IPSLogger\IPSLogger\NMAOut_Priority]*/);
+
   // ------------------------------------------------------------------------------------------
   define ("c_ID_ScriptSendMail",       22866 /*[Program\IPSLibrary\app\core\IPSLogger\Scripts\IPSLogger_SendMail]*/);
   define ("c_ID_ScriptPurgeLogFiles",  46309 /*[Program\IPSLibrary\app\core\IPSLogger\Scripts\IPSLogger_PurgeLogFiles]*/);
