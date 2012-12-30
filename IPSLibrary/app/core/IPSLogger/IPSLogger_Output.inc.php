@@ -50,6 +50,7 @@
 		IPSLogger_OutLog4IPS($LogLevel, $LogType, $Context, $Msg.$StackTxt);
 		IPSLogger_OutEcho($LogLevel, $LogType, $Context, $Msg.$StackTxt);
 		IPSLogger_OutProwl($LogLevel, $LogType, $Context, $Msg.$StackTxt, $Priority);
+		IPSLogger_OutNMA($LogLevel, $LogType, $Context, $Msg.$StackTxt, $Priority);
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------
@@ -257,6 +258,24 @@
 		}
 	}
 	
+	// ---------------------------------------------------------------------------------------------------------------------------
+	function IPSLogger_OutNMA($LogLevel, $LogType, $Context, $Msg, $Priority) {
+		if (GetValue(c_ID_NMAOutEnabled) and
+			GetValue(c_ID_NMAOutLevel) >= $LogLevel and
+			 GetValue(c_ID_NMAOutPriority) >= $Priority) {
+			include_once('nmaApi.class.php');
+
+            $nma = new nmaApi(array('apikey' => c_Key_NMAService));
+
+            if($nma->verify()){
+                  $nma->notify('IP-Symcon', 
+                              $Context, 
+                              utf8_encode($Msg));
+            }
+
+		}
+	}
+
 	// ---------------------------------------------------------------------------------------------------------------------------
 	function IPSLogger_SendProwlMessage($Event, $Description, $Priority) {
 		include_once('ProwlPHP.php');

@@ -155,5 +155,13 @@
 	 */
   	define ("c_Key_ProwlService",    '');
 
+	/** Konfigurations Parameter für Notify My Android Output
+	 *
+	 * Schlüssel der für das Versenden von NMA Messages verwendet werden soll.
+	 *
+	 * Parameter kann jederzeit geändert werden.
+	 */
+  	define ("c_Key_NMAService",    '');
+
 	/** @}*/
 ?>

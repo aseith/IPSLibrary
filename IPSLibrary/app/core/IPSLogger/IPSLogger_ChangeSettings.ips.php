@@ -28,6 +28,10 @@
 		if (c_Key_ProwlService <> '') {
 			SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);
 		}
+	} else if ($_IPS['VARIABLE']==c_ID_NMAOutEnabled) {
+		if (c_Key_NMAService <> '') {
+			SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);
+		}
 	} else {
 		SetValue($_IPS['VARIABLE'], $_IPS['VALUE']);
 	}

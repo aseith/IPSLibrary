@@ -114,6 +114,10 @@
 	$ID_ProwlOutEnabled   = CreateVariable('ProwlOut_Enabled',   0 /*Boolean*/, $InstanceId, 800, '~Switch',            $ID_ScriptIPSLoggerChangeSettings, false,       'Power');
 	$ID_ProwlOutLevel     = CreateVariable('ProwlOut_Level',     1 /*Integer*/, $InstanceId, 810, 'IPSLogger_Level',    $ID_ScriptIPSLoggerChangeSettings, 1 /*Error*/, 'Intensity');
 	$ID_ProwlOutPriority  = CreateVariable('ProwlOut_Priority',  1 /*Integer*/, $InstanceId, 820, 'IPSLogger_Priority', $ID_ScriptIPSLoggerChangeSettings, 0,           'Return');
+	$ID_NMAOutEnabled   = CreateVariable('NMAOut_Enabled',   0 /*Boolean*/, $InstanceId, 800, '~Switch',            $ID_ScriptIPSLoggerChangeSettings, false,       'Power');
+	$ID_NMAOutLevel     = CreateVariable('NMAOut_Level',     1 /*Integer*/, $InstanceId, 810, 'IPSLogger_Level',    $ID_ScriptIPSLoggerChangeSettings, 1 /*Error*/, 'Intensity');
+	$ID_NMAOutPriority  = CreateVariable('NMAOut_Priority',  1 /*Integer*/, $InstanceId, 820, 'IPSLogger_Priority', $ID_ScriptIPSLoggerChangeSettings, 0,           'Return');
+
 
 	SetVariableConstant ("c_ID_SingleOutEnabled",   $ID_SingleOutEnabled, 'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
 	SetVariableConstant ("c_ID_SingleOutLevel",     $ID_SingleOutLevel,   'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
@@ -143,6 +147,9 @@
 	SetVariableConstant ("c_ID_ProwlOutEnabled",    $ID_ProwlOutEnabled,  'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
 	SetVariableConstant ("c_ID_ProwlOutLevel",      $ID_ProwlOutLevel,    'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
 	SetVariableConstant ("c_ID_ProwlOutPriority",   $ID_ProwlOutPriority, 'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
+	SetVariableConstant ("c_ID_NMAOutEnabled",      $ID_NMAOutEnabled,    'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
+	SetVariableConstant ("c_ID_NMAOutLevel",        $ID_NMAOutLevel,      'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
+	SetVariableConstant ("c_ID_NMAOutPriority",     $ID_NMAOutPriority,   'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
 
 	// ----------------------------------------------------------------------------------------------------------------------------
 	// Webfront Installation
@@ -158,6 +165,7 @@
 		$ID_CategorySettingsLog4IPS  = CreateCategory(  'Log4IPS', $ID_CategorySettings, 600);
 		$ID_CategorySettingsEMail    = CreateCategory(  'EMail',   $ID_CategorySettings, 700);
 		$ID_CategorySettingsProwl    = CreateCategory(  'Prowl',   $ID_CategorySettings, 800);
+		$ID_CategorySettingsNMA      = CreateCategory(  'NMA',     $ID_CategorySettings, 900);
 
 		$UniqueId = date('Hi');
 		DeleteWFCItems($WFC10_ConfigId, 'SystemTP_LogWindow');
@@ -179,6 +187,7 @@
 		CreateLink('Output EMail',     $ID_EMailOutEnabled,   $ID_CategorySettings, 60);
 		CreateLink('Output Echo',      $ID_EchoOutEnabled,    $ID_CategorySettings, 70);
 		CreateLink('Output Prowl',     $ID_ProwlOutEnabled,   $ID_CategorySettings, 80);
+		CreateLink('Output NMA',       $ID_NMAOutEnabled,     $ID_CategorySettings, 90);
 
 		// Output Detail
 		CreateLink('Output Enabled',   $ID_SingleOutEnabled,             $ID_CategorySettingsWidget,   10);
@@ -209,6 +218,9 @@
 		CreateLink('Output Enabled',   $ID_ProwlOutEnabled,              $ID_CategorySettingsProwl,    10);
 		CreateLink('Logging Level',    $ID_ProwlOutLevel,                $ID_CategorySettingsProwl,    20);
 		CreateLink('Priority',         $ID_ProwlOutPriority,             $ID_CategorySettingsProwl,    30);
+		CreateLink('Output Enabled',   $ID_NMAOutEnabled,                $ID_CategorySettingsNMA,      10);
+		CreateLink('Logging Level',    $ID_NMAOutLevel,                  $ID_CategorySettingsNMA,      20);
+		CreateLink('Priority',         $ID_NMAOutPriority,               $ID_CategorySettingsNMA,      30);
 
 		// Installation of Info Widget
 		$wfcItems=WFC_GetItems($WFC10_ConfigId);
@@ -273,6 +285,11 @@
 		CreateLink('Output Enabled',   $ID_ProwlOutEnabled,              $ID_Output,   10);
 		CreateLink('Logging Level',    $ID_ProwlOutLevel,                $ID_Output,   20);
 		CreateLink('Priority',         $ID_ProwlOutPriority,             $ID_Output,   30);
+		
+        $ID_Output = CreateDummyInstance("NMA", $ID_CategoryiPhone, 700);
+		CreateLink('Output Enabled',   $ID_NMAOutEnabled,              $ID_Output,   10);
+		CreateLink('Logging Level',    $ID_NMAOutLevel,                $ID_Output,   20);
+		CreateLink('Priority',         $ID_NMAOutPriority,             $ID_Output,   30);
 	}
 
 	Register_PhpErrorHandler($moduleManager);
