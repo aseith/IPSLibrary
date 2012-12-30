@@ -114,9 +114,9 @@
 	$ID_ProwlOutEnabled   = CreateVariable('ProwlOut_Enabled',   0 /*Boolean*/, $InstanceId, 800, '~Switch',            $ID_ScriptIPSLoggerChangeSettings, false,       'Power');
 	$ID_ProwlOutLevel     = CreateVariable('ProwlOut_Level',     1 /*Integer*/, $InstanceId, 810, 'IPSLogger_Level',    $ID_ScriptIPSLoggerChangeSettings, 1 /*Error*/, 'Intensity');
 	$ID_ProwlOutPriority  = CreateVariable('ProwlOut_Priority',  1 /*Integer*/, $InstanceId, 820, 'IPSLogger_Priority', $ID_ScriptIPSLoggerChangeSettings, 0,           'Return');
-	$ID_NMAOutEnabled   = CreateVariable('NMAOut_Enabled',   0 /*Boolean*/, $InstanceId, 800, '~Switch',            $ID_ScriptIPSLoggerChangeSettings, false,       'Power');
-	$ID_NMAOutLevel     = CreateVariable('NMAOut_Level',     1 /*Integer*/, $InstanceId, 810, 'IPSLogger_Level',    $ID_ScriptIPSLoggerChangeSettings, 1 /*Error*/, 'Intensity');
-	$ID_NMAOutPriority  = CreateVariable('NMAOut_Priority',  1 /*Integer*/, $InstanceId, 820, 'IPSLogger_Priority', $ID_ScriptIPSLoggerChangeSettings, 0,           'Return');
+	$ID_NMAOutEnabled   = CreateVariable('NMAOut_Enabled',   0 /*Boolean*/, $InstanceId, 900, '~Switch',            $ID_ScriptIPSLoggerChangeSettings, false,       'Power');
+	$ID_NMAOutLevel     = CreateVariable('NMAOut_Level',     1 /*Integer*/, $InstanceId, 910, 'IPSLogger_Level',    $ID_ScriptIPSLoggerChangeSettings, 1 /*Error*/, 'Intensity');
+	$ID_NMAOutPriority  = CreateVariable('NMAOut_Priority',  1 /*Integer*/, $InstanceId, 920, 'IPSLogger_Priority', $ID_ScriptIPSLoggerChangeSettings, 0,           'Return');
 
 
 	SetVariableConstant ("c_ID_SingleOutEnabled",   $ID_SingleOutEnabled, 'IPSLogger_IDs.inc.php', 'IPSLibrary::app::core::IPSLogger');
@@ -286,7 +286,7 @@
 		CreateLink('Logging Level',    $ID_ProwlOutLevel,                $ID_Output,   20);
 		CreateLink('Priority',         $ID_ProwlOutPriority,             $ID_Output,   30);
 		
-        $ID_Output = CreateDummyInstance("NMA", $ID_CategoryiPhone, 700);
+        $ID_Output = CreateDummyInstance("NMA", $ID_CategoryiPhone, 800);
 		CreateLink('Output Enabled',   $ID_NMAOutEnabled,              $ID_Output,   10);
 		CreateLink('Logging Level',    $ID_NMAOutLevel,                $ID_Output,   20);
 		CreateLink('Priority',         $ID_NMAOutPriority,             $ID_Output,   30);
