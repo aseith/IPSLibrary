@@ -262,22 +262,23 @@
 	function IPSLogger_OutNMA($LogLevel, $LogType, $Context, $Msg, $Priority) {
 		if (GetValue(c_ID_NMAOutEnabled) and
 			GetValue(c_ID_NMAOutLevel) >= $LogLevel and
-			 GetValue(c_ID_NMAOutPriority) >= $Priority) {
-			include_once('nmaApi.class.php');
-
-            $nma = new nmaApi(array('apikey' => c_Key_NMAService));
-
-            if($nma->verify()){
-                  $nma->notify('IP-Symcon', 
-                              $Context, 
-                              utf8_encode($Msg));
-            }
-
+			GetValue(c_ID_NMAOutPriority) >= $Priority) {
+			include_once('class.nma.php');
+            
+            $nma = new NotifyMyAndroid();
+            $nma->push(array(
+              'apikey' => c_Key_NMAService,
+              'priority' => 0,
+              'application' => 'IP-Symcon',
+              'event' => $Context,
+              'description' => $Msg
+              )
+            );
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------
-	function IPSLogger_SendProwlMessage($Event, $Description, $Priority) {
+function IPSLogger_SendProwlMessage($Event, $Description, $Priority) {
 		include_once('ProwlPHP.php');
 
 		$prowl = new Prowl(c_Key_ProwlService);
